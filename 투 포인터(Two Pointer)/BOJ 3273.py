@@ -13,15 +13,14 @@ s = 0 # 시작 인덱스
 e = len(num_list) - 1 # 끝 인덱스
 cnt = 0 # 조건에 맞는 쌍의 개수
 
-# 투 포인터 알고리즘즘
+# 투 포인터 알고리즘
 while s < e:
-    if (num_list[s] + num_list[e] == x):
-        cnt += 1
-        e -= 1
-    elif (num_list[s] + num_list[e] > x):
-        e -= 1
-    else:
-        s += 1
+    if (num_list[s] + num_list[e] == x): # 두 수의 합이 x와 같다면
+        cnt += 1 # 조건에 맞는 쌍의 개수 1 증가
+        e -= 1 # 끝 인덱스 1 감소
+    elif (num_list[s] + num_list[e] > x): # 두 수의 합이 x보다 크다면
+        e -= 1 # 끝 인덱스 1 감소
+    else: # 두 수의 합이 x보다 작다면
+        s += 1 # 시작 인덱스 1 증가
 
-print(cnt)
-    
+print(cnt) #결과 출력

@@ -1,39 +1,34 @@
 def solution(id_list, report, k):
+    # 중복 신고 제거
     report = list(set(report))
     
-    #신고 당한 횟수 저장
+    # 신고당한 횟수 저장
     rpt_dict = {}
     for i in id_list:
         rpt_dict[i] = 0
     
-    #다른 유저가 신고한 횟수 저장
+    # 누가 누구를 신고했는지 저장
     rpt_by_user = {}
     for i in id_list:
         rpt_by_user[i] = []
     
-    #신고 처리
+    # 신고 기록 처리
     for r in report:
-        a,b = r.split()
+        a, b = r.split()   # a=신고자, b=피신고자
         
-        #피신고자 횟수 증가
+        # 피신고자 신고 횟수 증가
+        rpt_dict[b] += 1
         
-        if b not in rpt_dict:
-            rpt_dict[b] = 1
-        else:
-            rpt_dict[b] += 1
-        
-        #신고자가 누굴 신고했는지 기록
+        # 신고자가 누구를 신고했는지 기록
         rpt_by_user[a].append(b)
     
-    
-    #정지된 목록 추가
+    # 정지된 유저 목록
     stop_list = []
     for key in rpt_dict:
-        id_cnt = rpt_dict[key]
-        if id_cnt == k:
+        if rpt_dict[key] >= k:
             stop_list.append(key)
     
-    #매일 카운트 계산하기
+    # 메일 카운트 계산
     answer = []
     for user in id_list:
         cnt = 0
